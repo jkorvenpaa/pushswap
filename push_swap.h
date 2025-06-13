@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:50:38 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/12 15:08:32 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/06/13 12:05:35 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ typedef struct{
 
 typedef struct node{
 	long	data;
-	struct node	*next;
+	struct	node *prev;
+	struct	node	*next;
+	
 } stack;
 
 long	ft_atoi(const char *nptr);
