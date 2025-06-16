@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:50:38 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/13 12:05:35 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:18:48 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include<stdlib.h>
+# include<unistd.h>
 
 typedef struct{
 	long	*stack;

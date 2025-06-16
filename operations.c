@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:49:10 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/11 12:49:34 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/06/16 16:30:16 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,63 @@ rrb (reverse rotate b): Shift down all elements of stack b by 1.
 The last element becomes the first one.
 rrr : rra and rrb at the same time.
 */
+# include"push_swap.h"
+
+void	sa(stack *a)
+{
+	long	tmp;
+
+	if (a && a->next != NULL)
+	{
+		tmp = a->data;
+		a->data = a->next->data;
+		a->next->data = tmp;
+		write(1, "sa\n", 3);
+	}
+}
+void	sb(stack *b)
+{
+	long	tmp;
+
+	if (b && b->next != NULL)
+	{
+		tmp = b->data;
+		b->data = b->next->data;
+		b->next->data = tmp;
+		write(1, "sb\n", 3);
+	}
+}
+void	ss(stack *a, stack *b)
+{
+	long	tmp;
+
+	if (a && a->next != NULL)
+	{
+		tmp = a->data;
+		a->data = a->next->data;
+		a->next->data = tmp;
+	}
+		if (b && b->next != NULL)
+	{
+		tmp = b->data;
+		b->data = b->next->data;
+		b->next->data = tmp;
+	}
+	write(1, "ss\n", 3);
+}
+void	pb(stack **a, stack **b)
+{
+	stack	*tmp;
+
+	if (!*a)
+		return;
+	tmp = *a;
+	*a = (*a)->next;
+	if (*a)
+		(*a)->prev = NULL;
+	tmp->next = *b;
+	if (*b)
+		(*b)->prev = tmp;
+	*b = tmp;
+	write(1, "pb\n", 3);
+}

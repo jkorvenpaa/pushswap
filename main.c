@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:01:55 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/13 13:52:36 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/06/16 15:49:07 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,24 @@
 
 #include<stdio.h>
 stack	*fill_stack_a(char **argv, stack  *a, size_t size)
-{
-	char *temp;
-
-	temp = malloc(sizeof(size + 1));
-	if (!temp)
-		return(NULL);
-	
+{	
 	size_t	i;
+	stack	*node;
 	i = 0;
 	while(size > 0)
 	{
-		stack	*node = malloc(sizeof(stack));
+		node = malloc(sizeof(stack));
 		if(!node)
 			return(NULL);
-		temp[size] = ft_atoi(argv[i]);
-		node->data = temp[size];
-		printf("%ld",node -> data);
+		node->data = ft_atoi(argv[i]);
 		node->prev = NULL;
 		node->next = a;
 		if (a)
-			a -> prev = NULL;
+			a->prev = NULL;
 		a = node;
 		i++;
 		size--;
 	}
-	free (temp);
 	return (a);
 
 
