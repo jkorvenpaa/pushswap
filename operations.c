@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:49:10 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/16 16:30:16 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/06/17 16:33:15 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,19 @@ void	pb(stack **a, stack **b)
 		(*b)->prev = tmp;
 	*b = tmp;
 	write(1, "pb\n", 3);
+}
+void	ra(stack **a)
+{
+	stack	*first;
+	stack	*tmp;
+
+	if (!*a)
+		return;
+	first = *a;
+	*a = first->next;
+	first->next = NULL;
+	tmp = *a;
+	while(tmp->next)
+		tmp =  tmp->next;
+	tmp->next = first;
 }
