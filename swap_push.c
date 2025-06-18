@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   swap_push.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:49:10 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/17 16:33:15 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/06/18 11:48:24 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@ pa (push a): Take the first element at the top of b and put it at the top of a.
 Do nothing if b is empty.
 pb (push b): Take the first element at the top of a and put it at the top of b.
 Do nothing if a is empty.
-ra (rotate a): Shift up all elements of stack a by 1.
-The first element becomes the last one.
-rb (rotate b): Shift up all elements of stack b by 1.
-The first element becomes the last one.
-rr : ra and rb at the same time.
-rra (reverse rotate a): Shift down all elements of stack a by 1.
-The last element becomes the first one.
-rrb (reverse rotate b): Shift down all elements of stack b by 1.
-The last element becomes the first one.
-rrr : rra and rrb at the same time.
 */
 # include"push_swap.h"
 
@@ -45,6 +35,7 @@ void	sa(stack *a)
 		write(1, "sa\n", 3);
 	}
 }
+
 void	sb(stack *b)
 {
 	long	tmp;
@@ -75,6 +66,7 @@ void	ss(stack *a, stack *b)
 	}
 	write(1, "ss\n", 3);
 }
+
 void	pb(stack **a, stack **b)
 {
 	stack	*tmp;
@@ -91,18 +83,19 @@ void	pb(stack **a, stack **b)
 	*b = tmp;
 	write(1, "pb\n", 3);
 }
-void	ra(stack **a)
+void	pa(stack **a, stack **b)
 {
-	stack	*first;
 	stack	*tmp;
 
-	if (!*a)
+	if (!*b)
 		return;
-	first = *a;
-	*a = first->next;
-	first->next = NULL;
-	tmp = *a;
-	while(tmp->next)
-		tmp =  tmp->next;
-	tmp->next = first;
+	tmp = *b;
+	*b = (*b)->next;
+	if (*b)
+		(*b)->prev = NULL;
+	tmp->next = *a;
+	if (*a)
+		(*a)->prev = tmp;
+	*a = tmp;
+	write(1, "pa\n", 3);
 }

@@ -6,15 +6,15 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:01:55 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/16 15:49:07 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/06/18 12:00:00 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-	//listway
 
 #include "push_swap.h"
 
 #include<stdio.h>
+
 stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 {	
 	size_t	i;
@@ -38,7 +38,7 @@ stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 
 
 }
-
+/*
 void print_stack(stack *head)
 {
     stack *current = head;
@@ -50,7 +50,7 @@ void print_stack(stack *head)
     }
     printf("\n");
 }
-
+*/
 int	main(int argc, char **argv)
 {
 	stack	*a;
@@ -63,11 +63,8 @@ int	main(int argc, char **argv)
 	if (!a || !b)
 		return (0);
 	a = fill_stack_a(&argv[1], a, argc - 1);
-	print_stack(a);
-	/*
-	push_swap(a, b);
+	sort(*a, *b);
 	free (a);
 	free (b);
-	*/
-return (0);
+	return (0);
 }
