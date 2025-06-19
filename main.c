@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:01:55 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/18 12:00:00 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/06/19 17:51:19 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 	size_t	i;
 	stack	*node;
 	i = 0;
-	while(size > 0)
+	while(size > 0 && argv[i] != NULL)
 	{
 		node = malloc(sizeof(stack));
 		if(!node)
@@ -35,14 +35,14 @@ stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 		size--;
 	}
 	return (a);
-
-
 }
-/*
-void print_stack(stack *head)
+
+
+
+void print_A(stack *head)
 {
     stack *current = head;
-    printf("Stack: ");
+    printf("StackA: ");
     while (current)
     {
         printf("%ld ", current->data);
@@ -50,21 +50,87 @@ void print_stack(stack *head)
     }
     printf("\n");
 }
+void print_B(stack *head)
+{
+    stack *current = head;
+    printf("StackB: ");
+    while (current)
+    {
+        printf("%ld ", current->data);
+        current = current->next;
+    }
+    printf("\n");
+}
+/*
+#include <stdio.h>
+
+int main(void)
+{
+	char **res = ft_split("hey me you", ' ');
+	for (size_t i = 0; res[i]; i++)
+		printf("res[%zu] = \"%s\"\n", i, res[i]);
+	// Remember to free the result here!
+	return 0;
+}
 */
 int	main(int argc, char **argv)
 {
 	stack	*a;
 	stack	*b;
-	
+
+	a = NULL;
+	b = NULL;
+
+	int	i;
+	char	**array = &argv[1];
+
+	i = 0;
 	if (argc < 2)
 		return (0);
-	a = malloc(sizeof(stack));
-	b = malloc (sizeof(stack));
-	if (!a || !b)
-		return (0);
+	if (argc == 2)
+{
+		{
+		if (argv[1] == NULL)
+			return(0);
+		array = ft_split (argv[1], ' ');
+	}
+	   while (array[i])
+	{
+        printf("array[%d] = \"%s\"\n", i, array[i]);
+        i++;
+    }
+	printf("%d\n", i);
+	a = fill_stack_a(&array[0], a, i);
+	
+	print_A(a);
+}
+else
+{
+
 	a = fill_stack_a(&argv[1], a, argc - 1);
-	sort(*a, *b);
+	//sort(*a, *b);
+		print_A(a);
+}
+print_B(b);
+	sa(a);
+print_A(a);
+print_B(b);
+	pb(&a, &b);
+	pb(&a, &b);
+print_A(a);
+print_B(b);
+	sb(b);
+print_A(a);
+print_B(b);
+	ss(a, b);
+print_A(a);
+print_B(b);
+	pa(&a, &b);
+print_A(a);
+print_B(b);
 	free (a);
 	free (b);
 	return (0);
+	
 }
+	

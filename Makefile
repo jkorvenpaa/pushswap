@@ -1,18 +1,26 @@
-NAME = push_swap.a
+NAME = push_swap
 COMPILER = cc
-COPILERFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
-SRCS = push_swap.c\
+SRCS = 	main.c\
+		swap_push.c\
+		atol.c\
 
 OBJS = $(SRCS:%.c=%.o)
 
+LIBFT_DIR = ./libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
 all: $(NAME)
 
-$(NAME):$(OBJS)
-	$(AR) $@ $^
+$(LIBFT):
+	@make -C $(LIBFT_DIR)
+
+$(NAME):$(OBJS) $(LIBFT)
+	$(COMPILER) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 %.o: %.c
-	$(COMPILER) $(COMPILERFLAGS) -c $< -o $@
+	$(COMPILER) $(CFLAGS) -g -c $< -o $@
 
 clean:
 		@rm -f *.o
