@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:50:38 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/19 17:41:05 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:47:33 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,20 @@ void	sb(stack *b);
 void	ss(stack *a, stack *b);
 void	pb(stack **a, stack **b);
 void	pa(stack **a, stack **b);
+void    ra(stack **a);
+void    rb(stack **b);
+void    rr(stack **a, stack **b);
+void    rra(stack **a);
+void    rrb(stack **b);
+void    rrr(stack **a, stack **b);
+long	ft_atoi(const char *nptr);
+size_t	stack_len(stack *a);
+stack	last_node(stack *a);
+stack	max_node(stack *a);
 char	**ft_split(char const *s, char c);
-long	ft_atoi(const char *nptr);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-size_t	ft_strlen(const char *s);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
-char	*ft_strdup(const char *s);
-
-typedef struct{
-	long	*stack;
-	size_t	size;
-} datastruct;
+stack	min_node(stack *a);
 
 
-
-long	ft_atoi(const char *nptr);
 
 
 #endif

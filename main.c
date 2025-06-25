@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:01:55 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/19 17:51:19 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:51:25 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 	return (a);
 }
 
-
-
 void print_A(stack *head)
 {
     stack *current = head;
@@ -61,18 +59,7 @@ void print_B(stack *head)
     }
     printf("\n");
 }
-/*
-#include <stdio.h>
 
-int main(void)
-{
-	char **res = ft_split("hey me you", ' ');
-	for (size_t i = 0; res[i]; i++)
-		printf("res[%zu] = \"%s\"\n", i, res[i]);
-	// Remember to free the result here!
-	return 0;
-}
-*/
 int	main(int argc, char **argv)
 {
 	stack	*a;
@@ -80,37 +67,46 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-
 	int	i;
 	char	**array = &argv[1];
-
 	i = 0;
 	if (argc < 2)
 		return (0);
 	if (argc == 2)
-{
-		{
+	{
 		if (argv[1] == NULL)
 			return(0);
 		array = ft_split (argv[1], ' ');
+		while (array[i])
+		{
+        	printf("array[%d] = \"%s\"\n", i, array[i]);
+        	i++;
+    	}
+		printf("%d\n", i);
+		a = fill_stack_a(&array[0], a, i);
 	}
-	   while (array[i])
-	{
-        printf("array[%d] = \"%s\"\n", i, array[i]);
-        i++;
-    }
-	printf("%d\n", i);
-	a = fill_stack_a(&array[0], a, i);
-	
+	else
+		a = fill_stack_a(&argv[1], a, argc - 1);
 	print_A(a);
-}
-else
-{
+	stack_len(a);
+	print_A(a);
+	last_node(a);
+	max_node(a);
+	min_node(a);
 
-	a = fill_stack_a(&argv[1], a, argc - 1);
-	//sort(*a, *b);
-		print_A(a);
-}
+/*
+print_A(a);
+	rra(&a);
+	print_A(a);
+	pb(&a, &b);
+	pb(&a, &b);
+	print_B(b);
+	rrb(&b);
+	print_B(b);
+	rrr(&a, &b);
+	print_A(a);
+	print_B(b);
+
 print_B(b);
 	sa(a);
 print_A(a);
@@ -128,6 +124,7 @@ print_B(b);
 	pa(&a, &b);
 print_A(a);
 print_B(b);
+*/
 	free (a);
 	free (b);
 	return (0);
