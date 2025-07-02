@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:01:55 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/25 13:51:25 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/02 14:56:53 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,20 @@
 #include<stdio.h>
 
 stack	*fill_stack_a(char **argv, stack  *a, size_t size)
-{	
-	size_t	i;
+{
 	stack	*node;
-	i = 0;
-	while(size > 0 && argv[i] != NULL)
+
+	while(size > 0)
 	{
 		node = malloc(sizeof(stack));
 		if(!node)
 			return(NULL);
-		node->data = ft_atoi(argv[i]);
+		node->data = ft_atoi(argv[size - 1]);
 		node->prev = NULL;
 		node->next = a;
 		if (a)
 			a->prev = NULL;
 		a = node;
-		i++;
 		size--;
 	}
 	return (a);
@@ -88,43 +86,15 @@ int	main(int argc, char **argv)
 	else
 		a = fill_stack_a(&argv[1], a, argc - 1);
 	print_A(a);
-	stack_len(a);
-	print_A(a);
-	last_node(a);
-	max_node(a);
-	min_node(a);
-
-/*
-print_A(a);
-	rra(&a);
-	print_A(a);
-	pb(&a, &b);
-	pb(&a, &b);
 	print_B(b);
-	rrb(&b);
-	print_B(b);
-	rrr(&a, &b);
+	//last_node(a);
+	//max_node(a);
+	//min_node(a);
+	sort(&a, &b);
 	print_A(a);
 	print_B(b);
 
-print_B(b);
-	sa(a);
-print_A(a);
-print_B(b);
-	pb(&a, &b);
-	pb(&a, &b);
-print_A(a);
-print_B(b);
-	sb(b);
-print_A(a);
-print_B(b);
-	ss(a, b);
-print_A(a);
-print_B(b);
-	pa(&a, &b);
-print_A(a);
-print_B(b);
-*/
+
 	free (a);
 	free (b);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:30:05 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/25 13:49:10 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:04:56 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,21 @@
 
 # include "push_swap.h"
 # include<stdio.h>
+
+size_t	push_cost(stack *x, stack *target)
+{
+	size_t	cost;
+
+	cost = 0;
+	while (x->next)
+	{
+		if(x->data == target->data)
+			return (cost);
+		x = x->next;
+		cost++;
+	}
+	return(cost);
+}
 
 size_t	stack_len(stack *a)
 {
@@ -29,7 +44,7 @@ size_t	stack_len(stack *a)
 		temp = temp->next;
 		len++;
 	}
-	printf("stacklen:%zu\n", len);
+	//printf("stacklen:%zu\n", len);
 	return (len);
 }
 
@@ -45,7 +60,7 @@ stack	last_node(stack *a)
 	return (*last);
 }
 
-stack	max_node(stack *a)
+long	max_node(stack *a)
 {
 	stack	*max;
 	stack	*tmp;
@@ -59,9 +74,9 @@ stack	max_node(stack *a)
 		tmp = tmp->next;
 	}
 	 printf("max_node_data:%ld\n", max->data);
-	return (*max);
+	return (max->data);
 }
-stack	min_node(stack *a)
+long	min_node(stack *a)
 {
 	stack	*min;
 	stack	*tmp;
@@ -75,5 +90,5 @@ stack	min_node(stack *a)
 		tmp = tmp->next;
 	}
 	 printf("min_node_data:%ld\n", min->data);
-	return (*min);
+	return (min->data);
 }

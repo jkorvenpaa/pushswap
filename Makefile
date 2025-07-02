@@ -8,6 +8,7 @@ SRCS = 	main.c\
 		reverse_rotate.c\
 		atol.c\
 		utils.c\
+		sort.c\
 
 OBJS = $(SRCS:%.c=%.o)
 
