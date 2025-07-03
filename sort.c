@@ -6,12 +6,9 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 11:58:10 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/02 17:12:41 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/03 21:00:49 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-
 
 # include "push_swap.h"
 
@@ -20,59 +17,25 @@
 void	turk(stack **a, stack **b)
 {
 	printf("WE ARE IN TURK\n");
-	size_t	i;
-	//size_t	cost;
-	long	target;
-	stack	*btemp;
-	long	min;
-	
-	btemp = (*b);
-	i = 0;
+	stack	*current_push;
+	// add checks if len < 3 after push
 	pb(a, b);
 	pb(a, b);
-	min = min_node(*b);
-	//target_node = next smallest:
 	while (stack_len(*a) > 3)
 	{
-		if ((*a)->data < min)
-			target = max_node(*b);
-		else
-			{
-				while ((*a)->data > btemp->data && (btemp->data > btemp->next->data))
-				{
-					target = btemp->data;
-					btemp = btemp->next;
-				}
-			}
-		while((*b)->data != target && stack_len(*b) > i)
-		{//if push_cost()
-			rrb(b);
-			i++;
-		}
-		pb (a, b);
-	}
-	//if (last_node(*b)->data > (*a)->data)
-
-
-		/*
-	while (stack_len(*a) > 3)
-	{
-		while (((*a)->data < (*b)->data) && (stack_len(*b) > i))
-		{
-			rrb(b);
-			i++;
-		}
-		if ((*b)->data < (*b)->next->data)
-			rb(b);
+		current_push = cheapest_to_push(a, b);
+		move_to_top(a, b, current_push);
 		pb(a, b);
 	}
-	sort_triple(a);
-	rra(a);
-	while(stack_len(*b) > 0)
+	sort_triple(*a);
+	while(b)
 	{
+		current_push = cheapest_to_push(b, a);
+		move_to_top(a, b, current_push);
 		pa(a, b);
 	}
-*/
+	while(a != min_node(*a))
+		rra, ra;	
 }
 
 int is_sorted(stack **a)
@@ -119,15 +82,9 @@ void    sort(stack **a, stack **b)
 	else
 	{
 		if(is_sorted(a) == 1)
-		{
-			printf("sorted=%d\n", is_sorted(a));
 			return;
-		}
 		else
-		{
-		printf("sorted=%d\n", is_sorted(a));
-		turk(a, b);
-		}
+			turk(a, b);
 	}
 
 }

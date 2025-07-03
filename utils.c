@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:30:05 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/02 17:04:56 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/03 20:35:31 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,7 @@
 # include "push_swap.h"
 # include<stdio.h>
 
-size_t	push_cost(stack *x, stack *target)
-{
-	size_t	cost;
 
-	cost = 0;
-	while (x->next)
-	{
-		if(x->data == target->data)
-			return (cost);
-		x = x->next;
-		cost++;
-	}
-	return(cost);
-}
 
 size_t	stack_len(stack *a)
 {
@@ -91,4 +78,21 @@ long	min_node(stack *a)
 	}
 	 printf("min_node_data:%ld\n", min->data);
 	return (min->data);
+}
+size_t	past_middle_node(stack *x, stack *target)
+{
+	size_t	i;
+
+	i = 1;
+	while(x->next)
+	{
+		if (x == target)
+			break;
+		x = x->next;
+		i++;
+	}
+	if (i > stack_len(x)/2)
+		return(1);
+	else
+		return(0);
 }
