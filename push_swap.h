@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:50:38 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/02 17:04:37 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/05 17:38:33 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,18 @@ void    rra(stack **a);
 void    rrb(stack **b);
 void    rrr(stack **a, stack **b);
 long	ft_atoi(const char *nptr);
-size_t	stack_len(stack *a);
-stack	last_node(stack *a);
-long	max_node(stack *a);
 char	**ft_split(char const *s, char c);
-long	min_node(stack *a);
+size_t	stack_len(stack *a);
+stack	*last_node(stack *a);
+stack	*max_node(stack *a);
+size_t	past_middle_node(stack *x, stack *target);
+stack	*min_node(stack *a);
 void    sort(stack **a, stack **b);
 void    sort_triple(stack **a);
 int		is_sorted(stack **a);
 void    turk(stack **a, stack **b);
-size_t	push_cost(stack *x, stack *target);
-
-
-
-
+stack   *find_target(stack *a, stack *b);
+stack	*cheapest_to_push(stack *a, stack *b);
+void	move_to_push(stack **a, stack **b, stack *current_push, stack *target);
 
 #endif

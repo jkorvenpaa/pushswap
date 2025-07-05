@@ -6,24 +6,29 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:52:49 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/03 20:57:44 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/05 18:38:17 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-stack    find_target(stack *a, stack *b)
+#include<stdio.h>
+
+stack    *find_target(stack *a, stack *b)
 {
 	stack	*target;
 
-	while (b->next && a->data > b->data)
+	target = NULL;
+	while (b->next)
 	{
-		target = b;
+		if ((a->data > b->data) && (!target || target->data < b->data))
+			target = b;
 		b = b->next;
-		if (!b)
-			target = max_node(b);
+		//printf("targetdata %ld\n", target->data);
 	}
-	return(*target);
+	if (!target)
+		target = max_node(b);
+	return(target);
 }
 
 size_t	push_cost(stack *b, stack *target, stack *a)
@@ -46,40 +51,38 @@ size_t	push_cost(stack *b, stack *target, stack *a)
 	return(cost);
 } 
 
-stack	cheapest_to_push(stack *a, stack *b,)
+stack	*cheapest_to_push(stack *a, stack *b)
 {
-	stack	*target;
+	stack	*target = find_target(a, b);
+	stack	*next_target = find_target(a->next, b);
 
-	*target = find_target(a, b);
-	while (push_cost(a, target) > push_cost(a->next, target))
-		a = (a)->next;
-	return(*a);
-}
-void	move_to_top(stack **a, stack **b, stack *current_push, stack *target)
-{
-	if((*a)->prev == NULL && past_middle_node(b, target) == 1)
+	while (push_cost(b, target, a->next) > push_cost(b, next_target, a->next))
 	{
-		while (current_push->prev && a_to_top > i && smallest_cost > i)
+		a = a->next;
+		target = find_target(a, b);
+		next_target = find_target(a->next, b);
+	}
+	return(a);
+}
+void	move_to_push(stack **a, stack **b, stack *current_push, stack *target)
+{
+	if((*a)->prev == NULL && past_middle_node(*b, target) == 1)
+	{
+		while (current_push->prev && target->prev)
 			rrr(a, b);
 		while (current_push->prev)
 			rra(a);
 	}
-	else if ((*a)->prev == NULL && past_middle_node(b, target) == 0)
+	else if ((*a)->prev == NULL && past_middle_node(*b, target) == 0)
 	{
-		while (current_push->prev && a_to_top > i && smallest_cost > i)
+		while (current_push->prev && target->prev)
 			rr(a, b);
 		while (current_push->prev)
 			ra(a);
 	}
-	// check all these and add ss conditions;
-	target_to_top(b, target);
-}
-
-void	target_to_top(stack	**b, stack *target)
-{
-	while (b != target)
+	while (*b != target)
 	{
-		if (past_middle_node(b, target) == 0)
+		if (past_middle_node(*b, target) == 0)
 			rb(b);
 		else
 			rrb(b);

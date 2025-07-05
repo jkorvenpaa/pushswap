@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:30:05 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/03 20:35:31 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/05 17:22:32 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t	stack_len(stack *a)
 	return (len);
 }
 
-stack	last_node(stack *a)
+stack	*last_node(stack *a)
 {
 	stack	*last;
 	last = a;
@@ -44,10 +44,10 @@ stack	last_node(stack *a)
 		last = last->next;
 	}
 	 printf("lastnode_data:%ld\n", last->data);
-	return (*last);
+	return (last);
 }
 
-long	max_node(stack *a)
+stack	*max_node(stack *a)
 {
 	stack	*max;
 	stack	*tmp;
@@ -60,10 +60,10 @@ long	max_node(stack *a)
 			max = tmp;
 		tmp = tmp->next;
 	}
-	 printf("max_node_data:%ld\n", max->data);
-	return (max->data);
+	//printf("max_node_data:%ld\n", max->data);
+	return (max);
 }
-long	min_node(stack *a)
+stack	*min_node(stack *a)
 {
 	stack	*min;
 	stack	*tmp;
@@ -77,7 +77,7 @@ long	min_node(stack *a)
 		tmp = tmp->next;
 	}
 	 printf("min_node_data:%ld\n", min->data);
-	return (min->data);
+	return (min);
 }
 size_t	past_middle_node(stack *x, stack *target)
 {
