@@ -9,7 +9,7 @@ SRCS = 	main.c\
 		atol.c\
 		utils.c\
 		sort.c\
-		top.c\
+		target.c\
 
 OBJS = $(SRCS:%.c=%.o)
 

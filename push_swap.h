@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:50:38 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/05 17:38:33 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/06 16:25:18 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ stack	*max_node(stack *a);
 size_t	past_middle_node(stack *x, stack *target);
 stack	*min_node(stack *a);
 void    sort(stack **a, stack **b);
-void    sort_triple(stack **a);
-int		is_sorted(stack **a);
 void    turk(stack **a, stack **b);
-stack   *find_target(stack *a, stack *b);
-stack	*cheapest_to_push(stack *a, stack *b);
+stack   *find_target_pb(stack *a, stack *b);
+stack   *find_target_pa(stack *a, stack *b);
+stack	*cheapest_to_pb(stack *a, stack *b);
+stack	*cheapest_to_pa(stack *a, stack *b);
 void	move_to_push(stack **a, stack **b, stack *current_push, stack *target);
 
 #endif

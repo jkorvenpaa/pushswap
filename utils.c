@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:30:05 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/05 17:22:32 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/06 13:23:39 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ stack	*min_node(stack *a)
 			min = tmp;
 		tmp = tmp->next;
 	}
-	 printf("min_node_data:%ld\n", min->data);
+	//printf("min_node_data:%ld\n", min->data);
 	return (min);
 }
 size_t	past_middle_node(stack *x, stack *target)

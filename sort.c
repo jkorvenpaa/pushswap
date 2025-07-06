@@ -6,46 +6,13 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 11:58:10 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/05 18:47:49 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/06 16:23:17 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
 #include <stdio.h>
-
-void	turk(stack **a, stack **b)
-{
-	printf("WE ARE IN TURK\n");
-	stack	*target;
-	stack	*current_push;
-
-	target = NULL;
-	current_push = NULL;
-	// add checks if len < 3 after push
-	pb(a, b);
-	pb(a, b);
-	while (stack_len(*a) > 3)
-	{
-		current_push = cheapest_to_push(*a, *b);
-		target = find_target(current_push, *b);
-		printf("target= %ld  current_push= %ld\n", target->data, current_push->data);
-		printf("a = %ld b = %ld\n", (*a)->data, (*b)->data);
-		move_to_push(a, b, current_push, target);
-		printf("a = %ld b = %ld\n\n", (*a)->data, (*b)->data);
-		pb(a, b);
-	}
-	sort_triple(a);
-	while(b)
-	{
-	//	current_push = cheapest_to_push(*b, *a);
-	//	target = find_target(current_push, *a);
-	//	move_to_push(b, a, current_push, target);
-		pa(a, b);
-	}
-	//while(*a != min_node(*a))
-	//	rra(a);
-}
 
 int is_sorted(stack **a)
 {
@@ -72,6 +39,72 @@ void    sort_triple(stack **a)
 		sa(*a);
 }
 
+void	move_to_push(stack **a, stack **b, stack *current_push, stack *target)
+{
+	while(*a != current_push)
+	{
+		if (past_middle_node(*b, target))
+		{
+			if(*b != target)
+				rrr(a, b);
+			else
+				rra(a);
+		}
+		else
+		{
+			if(*b != target)
+				rr(a, b);
+			else
+				ra(a);
+		}
+	}
+	while (*b != target)
+	{
+		if (past_middle_node(*b, target))
+			rrb(b);
+		else
+			rb(b);
+	}
+}
+
+void	turk(stack **a, stack **b)
+{
+	printf("WE ARE IN TURK\n");
+	stack	*target;
+	stack	*current_push;
+
+	target = NULL;
+	current_push = NULL;
+	// add checks if len < 3 after push
+	
+	pb(a, b);
+	pb(a, b);
+	while (stack_len(*a) > 3)
+	{
+		current_push = cheapest_to_pb(*a, *b);
+		target = find_target_pb(current_push, *b);
+		//printf("target= %ld  current_push= %ld\n", target->data, current_push->data);
+		//printf("a = %ld b = %ld\n", (*a)->data, (*b)->data);
+		move_to_push(a, b, current_push, target);
+		//printf("a = %ld b = %ld\n\n", (*a)->data, (*b)->data);
+		pb(a, b);
+	}
+	sort_triple(a);
+	while (*b)
+	{
+		current_push = cheapest_to_pa(*b, *a);
+		target = find_target_pa(current_push, *a);
+		move_to_push(b, a, current_push, target);
+		pa(a, b);
+	}
+	while(*a != min_node(*a))
+	{
+		if(past_middle_node(*a, min_node(*a)))
+			rra(a);
+		else
+			ra(a);
+	}
+}
 
 void    sort(stack **a, stack **b)
 {

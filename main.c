@@ -6,14 +6,18 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:01:55 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/02 14:56:53 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/06 16:28:17 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
 #include<stdio.h>
+
+// DUP still needs to be handled
+// error checks and parsing
+// int min and max
+// memcheck!!!
 
 stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 {
@@ -93,11 +97,10 @@ int	main(int argc, char **argv)
 	sort(&a, &b);
 	print_A(a);
 	print_B(b);
-
-
 	free (a);
 	free (b);
 	return (0);
 	
 }
+
 	
