@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:30:05 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/06 13:23:39 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:11:10 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ size_t	past_middle_node(stack *x, stack *target)
 {
 	size_t	i;
 
-	i = 1;
+	i = 0;
 	while(x->next)
 	{
 		if (x == target)

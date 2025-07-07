@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 11:58:10 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/06 16:23:17 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/07 15:13:04 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	move_to_push(stack **a, stack **b, stack *current_push, stack *target)
 {
 	while(*a != current_push)
 	{
-		if (past_middle_node(*b, target))
+		if (past_middle_node(*a, current_push))
 		{
 			if(*b != target)
 				rrr(a, b);
@@ -69,23 +69,23 @@ void	move_to_push(stack **a, stack **b, stack *current_push, stack *target)
 
 void	turk(stack **a, stack **b)
 {
-	printf("WE ARE IN TURK\n");
+	//printf("WE ARE IN TURK\n");
 	stack	*target;
 	stack	*current_push;
 
 	target = NULL;
 	current_push = NULL;
-	// add checks if len < 3 after push
-	
-	pb(a, b);
-	pb(a, b);
 	while (stack_len(*a) > 3)
 	{
 		current_push = cheapest_to_pb(*a, *b);
 		target = find_target_pb(current_push, *b);
-		//printf("target= %ld  current_push= %ld\n", target->data, current_push->data);
+	//	printf("target= %ld  current_push= %ld\n", target->data, current_push->data);
+		//print_A(*a);
+		//print_B(*b);
 		//printf("a = %ld b = %ld\n", (*a)->data, (*b)->data);
 		move_to_push(a, b, current_push, target);
+	//	print_A(*a);
+	//	print_B(*b);
 		//printf("a = %ld b = %ld\n\n", (*a)->data, (*b)->data);
 		pb(a, b);
 	}
@@ -97,6 +97,8 @@ void	turk(stack **a, stack **b)
 		move_to_push(b, a, current_push, target);
 		pa(a, b);
 	}
+	//print_A(*a);
+	//print_B(*b);
 	while(*a != min_node(*a))
 	{
 		if(past_middle_node(*a, min_node(*a)))
@@ -104,6 +106,10 @@ void	turk(stack **a, stack **b)
 		else
 			ra(a);
 	}
+	//print_A(*a);
+	//print_B(*b);
+	//if (is_sorted(a))
+	//	write(1,"Asorted\n",8);
 }
 
 void    sort(stack **a, stack **b)
@@ -121,12 +127,16 @@ void    sort(stack **a, stack **b)
 		sort_triple(a);
 		return;
 	}
-	else
+	else if (stack_len(*a) > 3)
 	{
 		if(is_sorted(a) == 1)
 			return;
 		else
+		{
+			pb(a, b);
+			if	(stack_len(*a) > 3)
+				pb(a, b);
 			turk(a, b);
+		}
 	}
-
 }
