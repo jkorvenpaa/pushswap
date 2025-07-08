@@ -6,15 +6,17 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:50:38 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/07 14:55:36 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/08 17:37:07 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include<stdlib.h>
-# include<unistd.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <unistd.h>
+# include <limits.h>
 
 typedef struct node{
 	long	data;
@@ -39,7 +41,7 @@ char	**ft_split(char const *s, char c);
 size_t	stack_len(stack *a);
 stack	*last_node(stack *a);
 stack	*max_node(stack *a);
-size_t	past_middle_node(stack *x, stack *target);
+bool	past_middle_node(stack *x, stack *target);
 stack	*min_node(stack *a);
 void    sort(stack **a, stack **b);
 void    turk(stack **a, stack **b);

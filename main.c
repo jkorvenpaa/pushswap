@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:01:55 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/07 15:02:01 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/08 18:31:08 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,41 @@
 
 #include<stdio.h>
 
-// error checks and parsing
-//In case of error, it must display "Error" followed by an ’\n’ on the standard error.
-//Errors include, for example: some arguments not being integers, some arguments
-//exceeding the integer limits, and/or the presence of duplicates.
-// int min and max
-// memcheck!!!
 
-stack	*fill_stack_a(char **argv, stack  *a, size_t size)
+bool	is_valid(stack *a, stack *node)
+{
+	if (node->data > INT_MAX || node->data < INT_MIN)
+	{
+		write (1, "Error\n", 6);
+		return (false);
+	}
+	
+	//if no_int 
+
+	while (a)
+	{
+		if (node->data == a->data)
+			{
+			write (1, "Error\n", 6);
+			return (false);
+			}
+		a = a->next;
+		}
+		return(true);
+}
+static void	free_nodes(stack *a)
+{
+	stack	*node;
+	
+	while(a)
+	{
+		node = a;
+		free(node);
+		a = a->next;
+	}
+
+}
+static stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 {
 	stack	*node;
 
@@ -31,28 +58,27 @@ stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 		if(!node)
 			return(NULL);
 		node->data = ft_atoi(argv[size - 1]);
+		if (is_valid(a, node)==false)
+		{
+			free(node);
+			free_nodes(a);
+			return (NULL);
+		}
+			
 		node->prev = NULL;
-		node->next = a;
 		if (a)
-			a->prev = NULL;
+		{
+			node->next = a;
+			a->prev = node;
+		}
+		else
+			node->next = NULL; 
 		a = node;
 		size--;
 	}
 	return (a);
 }
-/*void	*error(stack *a)
-{
-	stack	*node;
-	
-	if (duplicates || no_int || past_int_value)
-	{
-		write (1, "Error\n", 6);
-		return (NULL);
-	}
 
-	return(a);
-
-}*/
 void print_A(stack *head)
 {
     stack *current = head;
@@ -76,6 +102,7 @@ void print_B(stack *head)
     printf("\n");
 }
 
+
 int	main(int argc, char **argv)
 {
 	stack	*a;
@@ -83,27 +110,25 @@ int	main(int argc, char **argv)
 
 	a = NULL;
 	b = NULL;
-	int	i;
-	char	**array = &argv[1];
-	i = 0;
+	//int	i;
+	//char	**array = &argv[1];
+	//i = 0;
 	if (argc < 2 || (argc == 2 && argv[1] == NULL))
 		return (0);
-	else if (argc == 2)
+	/*else if (argc == 2)
 	{
 		array = ft_split (argv[1], ' ');
 		while (array[i])
         	i++;
 		a = fill_stack_a(&array[0], a, i);
 		free (array);
-	}
+	}*/
 	else
 		a = fill_stack_a(&argv[1], a, argc - 1);
-	
+	if (!a)
+		return(0);
 	sort(&a, &b);
-	//print_A(a);
-	//print_B(b);
-	free (a);
-	free (b);
+	free_nodes(a);
 	return (0);
 	
 }
