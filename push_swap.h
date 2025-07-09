@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:50:38 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/08 17:37:07 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/09 12:44:55 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void    rr(stack **a, stack **b);
 void    rra(stack **a);
 void    rrb(stack **b);
 void    rrr(stack **a, stack **b);
-long	ft_atoi(const char *nptr);
+long	ft_atol(const char *nptr);
 char	**ft_split(char const *s, char c);
 size_t	stack_len(stack *a);
 stack	*last_node(stack *a);
