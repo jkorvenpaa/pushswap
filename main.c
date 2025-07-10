@@ -6,14 +6,13 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:01:55 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/09 13:13:06 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:42:52 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 #include<stdio.h>
-
 
 static bool	input_is_digit(char **argv, int argc)
 {
@@ -55,13 +54,13 @@ static bool	is_valid_int(stack *a, stack *node)
 			}
 		a = a->next;
 		}
-		return(true);
+		return (true);
 }
 static void	free_nodes(stack *a)
 {
 	stack	*node;
-	
-	while(a)
+
+	while (a)
 	{
 		node = a;
 		a = a->next;
@@ -73,11 +72,11 @@ static stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 {
 	stack	*node;
 
-	while(size > 0)
+	while (size > 0)
 	{
 		node = malloc(sizeof(stack));
-		if(!node)
-			return(NULL);
+		if (!node)
+			return (NULL);
 		node->data = ft_atol(argv[size - 1]);
 		if (is_valid_int(a, node)==false)
 		{
@@ -85,7 +84,6 @@ static stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 			free_nodes(a);
 			return (NULL);
 		}
-			
 		node->prev = NULL;
 		if (a)
 		{
@@ -99,7 +97,7 @@ static stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 	}
 	return (a);
 }
-
+/*
 void print_A(stack *head)
 {
     stack *current = head;
@@ -121,12 +119,12 @@ void print_B(stack *head)
         current = current->next;
     }
     printf("\n");
-}
+}*/
 int	main(int argc, char **argv)
 {
 	stack	*a;
 	stack	*b;
-	
+
 	a = NULL;
 	b = NULL;
 	if (argc < 2 || (argc == 2 && argv[1] == NULL))
@@ -138,13 +136,12 @@ int	main(int argc, char **argv)
 	}
 	a = fill_stack_a(&argv[1], a, argc - 1);
 	if (!a)
-		return(0);
+		return (0);
 	sort(&a, &b);
-	print_A(a);
-	print_B(b);
-	free_nodes(a);
+	//print_A(a);
+	//print_B(b);
+	free_nodes (a);
 	return (0);
-	
 }
 
 	

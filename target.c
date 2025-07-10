@@ -6,15 +6,13 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:52:49 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/06 16:20:36 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:58:10 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-#include<stdio.h>
-
-stack    *find_target_pb(stack *a, stack *b)
+stack	*find_target_pb(stack *a, stack *b)
 {
 	stack	*target;
 	stack	*b_head;
@@ -26,14 +24,13 @@ stack    *find_target_pb(stack *a, stack *b)
 		if ((a->data > b->data) && (!target || target->data < b->data))
 			target = b;
 		b = b->next;
-		//printf("targetdata %ld\n", target->data);
 	}
 	if (!target)
 		target = max_node(b_head);
-	return(target);
+	return (target);
 }
 
-stack    *find_target_pa(stack *b, stack *a)
+stack	*find_target_pa(stack *b, stack *a)
 {
 	stack	*target;
 	stack	*a_head;
@@ -45,11 +42,10 @@ stack    *find_target_pa(stack *b, stack *a)
 		if ((b->data < a->data) && (!target || target->data > a->data))
 			target = a;
 		a = a->next;
-//		printf("targetdata %ld\n", target->data);
 	}
 	if (!target)
 		target = min_node(a_head);
-	return(target);
+	return (target);
 }
 
 size_t	push_cost(stack *b, stack *target, stack *a, stack *current)
@@ -64,7 +60,6 @@ size_t	push_cost(stack *b, stack *target, stack *a, stack *current)
 		else
 			cost = stack_len(b) - stack_len(target);
 	}
-	//printf("push_cost = %zu\n", cost);
 	if (a != current)
 	{
 		if (past_middle_node(a, current))
@@ -72,19 +67,22 @@ size_t	push_cost(stack *b, stack *target, stack *a, stack *current)
 		else
 			cost = cost + (stack_len(a) - stack_len(current));
 	}
-
-	//printf("push_cost = %zu\n\n", cost);
-	return(cost);
+	return (cost);
 } 
 
 stack	*cheapest_to_pb(stack *a, stack *b)
 {
-	stack	*current = a;
-	stack	*target = NULL;
-	stack	*cheap = NULL;
-	size_t	min = 0;
-	size_t	cost = 0;
+	stack	*current;
+	stack	*target;
+	stack	*cheap;
+	size_t	min;
+	size_t	cost;
 
+	current = a;
+	target = NULL;
+	cheap = NULL;
+	min = 0;	
+	cost = 0;
 	while (current)
 	{
 		target = find_target_pb(current, b);
@@ -96,27 +94,32 @@ stack	*cheapest_to_pb(stack *a, stack *b)
 		}
 		current = current->next;
 	}
-	return(cheap);
+	return (cheap);
 }
 stack	*cheapest_to_pa(stack *b, stack *a)
 {
-	stack	*current = b;
-	stack	*target = NULL;
-	stack	*cheap = NULL;
-	size_t	min = 0;
-	size_t	cost = 0;
+	stack	*current;
+	stack	*target;
+	stack	*cheap;
+	size_t	min;
+	size_t	cost;
 
+	current = b;
+	target = NULL;
+	cheap = NULL;
+	min = 0;	
+	cost = 0;
 	while (current)
 	{
 		target = find_target_pa(current, a);
 		cost = push_cost(a, target, b, current);
-		if(!cheap || cost < min)
+		if (!cheap || cost < min)
 		{
 			cheap = current;
 			min = cost;
 		}
 		current = current->next;
 	}
-	return(cheap);
+	return (cheap);
 }
 

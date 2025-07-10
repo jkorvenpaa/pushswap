@@ -6,16 +6,21 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:30:05 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/08 17:36:56 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/10 18:14:46 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//stack len, last node, max node , min node.
+#include "push_swap.h"
 
-# include "push_swap.h"
-# include<stdio.h>
-
-
+void	sort_triple(stack **a)
+{
+	if (((*a)->data > (*a)->next->data))
+		sa(*a);
+	if ((*a)->next->data > (*a)->next->next->data)
+		rra(a);
+	if (((*a)->data > (*a)->next->data))
+		sa(*a);
+}
 
 size_t	stack_len(stack *a)
 {
@@ -23,76 +28,69 @@ size_t	stack_len(stack *a)
 	stack	*temp;
 
 	if (!a)
-		return(0);
-	len = 1;
+		return (0);
+	len = 0;
 	temp = a;
-	while(temp->next)
+	while (temp)
 	{
 		temp = temp->next;
 		len++;
 	}
-	//printf("stacklen:%zu\n", len);
 	return (len);
-}
-
-stack	*last_node(stack *a)
-{
-	stack	*last;
-	last = a;
-	while(last->next)
-	{
-		last = last->next;
-	}
-	 printf("lastnode_data:%ld\n", last->data);
-	return (last);
 }
 
 stack	*max_node(stack *a)
 {
 	stack	*max;
 	stack	*tmp;
-	
+
+	if (!a)
+		return (NULL);
 	max = a;
-	tmp= a->next;
-	while(tmp)
+	tmp = a->next;
+	while (tmp)
 	{
 		if (max->data < tmp->data)
 			max = tmp;
 		tmp = tmp->next;
 	}
-	//printf("max_node_data:%ld\n", max->data);
 	return (max);
 }
+
 stack	*min_node(stack *a)
 {
 	stack	*min;
 	stack	*tmp;
 
+	if (!a)
+		return (NULL);
 	min = a;
-	tmp= a->next;
-	while(tmp)
+	tmp = a->next;
+	while (tmp)
 	{
 		if (min->data > tmp->data)
 			min = tmp;
 		tmp = tmp->next;
 	}
-	//printf("min_node_data:%ld\n", min->data);
 	return (min);
 }
+
 bool	past_middle_node(stack *x, stack *target)
 {
 	size_t	i;
+	stack	*head;
 
+	head = x;
 	i = 0;
-	while(x->next)
+	while (x)
 	{
 		if (x == target)
-			break;
+			break ;
 		x = x->next;
 		i++;
 	}
-	if (i > stack_len(x)/2)
-		return(true);
+	if (i > (stack_len(head) / 2))
+		return (true);
 	else
-		return(false);
+		return (false);
 }

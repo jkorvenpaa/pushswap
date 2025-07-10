@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 11:31:07 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/25 13:38:38 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:39:39 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,33 @@ rr : ra and rb at the same time.
 
 void	rotate(stack **a)
 {
-	stack	*first;
+	stack	*rot;
 	stack	*tmp;
 
 	if (!*a || !(*a)->next)
 		return;
-	first = *a;
-	*a = first->next;
-	first->next = NULL;
+	rot = *a;
+	*a = (*a)->next;
+	(*a)->prev = NULL;
 	tmp = *a;
-	while(tmp->next)
+	while (tmp->next)
 		tmp =  tmp->next;
-	tmp->next = first;
+	tmp->next = rot;
+	rot->prev = tmp;
+	rot->next = NULL;
 }
 
-void    ra(stack **a)
+void	ra(stack **a)
 {
     rotate(a);
     write(1, "ra\n", 3);
 }
-void    rb(stack **b)
+void	rb(stack **b)
 {
     rotate(b);
     write(1, "rb\n", 3);
 }
-void    rr(stack **a, stack **b)
+void	rr(stack **a, stack **b)
 {
     rotate(a);
     rotate(b);
