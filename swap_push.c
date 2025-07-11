@@ -6,7 +6,7 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 12:49:10 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/06/18 11:48:24 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:33:17 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ Do nothing if b is empty.
 pb (push b): Take the first element at the top of a and put it at the top of b.
 Do nothing if a is empty.
 */
-# include"push_swap.h"
+#include "push_swap.h"
 
-void	sa(stack *a)
+void	sa(t_stack *a)
 {
 	long	tmp;
 
@@ -36,7 +36,7 @@ void	sa(stack *a)
 	}
 }
 
-void	sb(stack *b)
+void	sb(t_stack *b)
 {
 	long	tmp;
 
@@ -48,7 +48,8 @@ void	sb(stack *b)
 		write(1, "sb\n", 3);
 	}
 }
-void	ss(stack *a, stack *b)
+
+void	ss(t_stack *a, t_stack *b)
 {
 	long	tmp;
 
@@ -58,7 +59,7 @@ void	ss(stack *a, stack *b)
 		a->data = a->next->data;
 		a->next->data = tmp;
 	}
-		if (b && b->next != NULL)
+	if (b && b->next != NULL)
 	{
 		tmp = b->data;
 		b->data = b->next->data;
@@ -67,12 +68,12 @@ void	ss(stack *a, stack *b)
 	write(1, "ss\n", 3);
 }
 
-void	pb(stack **a, stack **b)
+void	pb(t_stack **a, t_stack **b)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	if (!*a)
-		return;
+		return ;
 	tmp = *a;
 	*a = (*a)->next;
 	if (*a)
@@ -83,12 +84,13 @@ void	pb(stack **a, stack **b)
 	*b = tmp;
 	write(1, "pb\n", 3);
 }
-void	pa(stack **a, stack **b)
+
+void	pa(t_stack **a, t_stack **b)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	if (!*b)
-		return;
+		return ;
 	tmp = *b;
 	*b = (*b)->next;
 	if (*b)

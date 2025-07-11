@@ -6,13 +6,11 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 12:01:55 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/10 17:42:52 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:08:47 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-#include<stdio.h>
 
 static bool	input_is_digit(char **argv, int argc)
 {
@@ -23,10 +21,10 @@ static bool	input_is_digit(char **argv, int argc)
 	j = 0;
 	while (i < argc)
 	{
-		if ((argv[i][j+1]) && (argv[i][j] == '-' || argv[i][j] == '+'))
-				j++;
+		if ((argv[i][j + 1]) && (argv[i][j] == '-' || argv[i][j] == '+'))
+			j++;
 		while (argv[i][j])
-		{	
+		{
 			if (argv[i][j] < 48 || argv[i][j] > 57)
 				return (false);
 			j++;
@@ -37,28 +35,30 @@ static bool	input_is_digit(char **argv, int argc)
 	return (true);
 }
 
-static bool	is_valid_int(stack *a, stack *node)
+static bool	is_valid_int(t_stack *a, t_stack *node)
 {
 	if (node->data > INT_MAX || node->data < INT_MIN)
 	{
 		write (1, "Error\n", 6);
+		free(node);
 		return (false);
-	} 
-
+	}
 	while (a)
 	{
 		if (node->data == a->data)
-			{
+		{
 			write (1, "Error\n", 6);
+			free(node);
 			return (false);
-			}
-		a = a->next;
 		}
-		return (true);
+		a = a->next;
+	}
+	return (true);
 }
-static void	free_nodes(stack *a)
+
+static void	free_nodes(t_stack *a)
 {
-	stack	*node;
+	t_stack	*node;
 
 	while (a)
 	{
@@ -66,21 +66,20 @@ static void	free_nodes(stack *a)
 		a = a->next;
 		free(node);
 	}
-
 }
-static stack	*fill_stack_a(char **argv, stack  *a, size_t size)
+
+static t_stack	*fill_stack_a(char **argv, t_stack *a, size_t size)
 {
-	stack	*node;
+	t_stack	*node;
 
 	while (size > 0)
 	{
-		node = malloc(sizeof(stack));
+		node = malloc(sizeof(t_stack));
 		if (!node)
 			return (NULL);
 		node->data = ft_atol(argv[size - 1]);
-		if (is_valid_int(a, node)==false)
+		if (is_valid_int(a, node) == false)
 		{
-			free(node);
 			free_nodes(a);
 			return (NULL);
 		}
@@ -91,39 +90,17 @@ static stack	*fill_stack_a(char **argv, stack  *a, size_t size)
 			a->prev = node;
 		}
 		else
-			node->next = NULL; 
+			node->next = NULL;
 		a = node;
 		size--;
 	}
 	return (a);
 }
-/*
-void print_A(stack *head)
-{
-    stack *current = head;
-    printf("StackA: ");
-    while (current)
-    {
-        printf("%ld ", current->data);
-        current = current->next;
-    }
-    printf("\n");
-}
-void print_B(stack *head)
-{
-    stack *current = head;
-    printf("StackB: ");
-    while (current)
-    {
-        printf("%ld ", current->data);
-        current = current->next;
-    }
-    printf("\n");
-}*/
+
 int	main(int argc, char **argv)
 {
-	stack	*a;
-	stack	*b;
+	t_stack	*a;
+	t_stack	*b;
 
 	a = NULL;
 	b = NULL;
@@ -135,13 +112,9 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	a = fill_stack_a(&argv[1], a, argc - 1);
-	if (!a)
+	if (!a || is_sorted(&a))
 		return (0);
 	sort(&a, &b);
-	//print_A(a);
-	//print_B(b);
 	free_nodes (a);
 	return (0);
 }
-
-	

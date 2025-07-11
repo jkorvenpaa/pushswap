@@ -10,6 +10,7 @@ SRCS = 	main.c\
 		utils.c\
 		sort.c\
 		target.c\
+		moves.c\
 
 OBJS = $(SRCS:%.c=%.o)
 

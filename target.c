@@ -6,17 +6,17 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 16:52:49 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/10 17:58:10 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:35:49 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-stack	*find_target_pb(stack *a, stack *b)
+t_stack	*find_target_pb(t_stack *a, t_stack *b)
 {
-	stack	*target;
-	stack	*b_head;
-	
+	t_stack	*target;
+	t_stack	*b_head;
+
 	b_head = b;
 	target = NULL;
 	while (b)
@@ -30,11 +30,11 @@ stack	*find_target_pb(stack *a, stack *b)
 	return (target);
 }
 
-stack	*find_target_pa(stack *b, stack *a)
+t_stack	*find_target_pa(t_stack *b, t_stack *a)
 {
-	stack	*target;
-	stack	*a_head;
-	
+	t_stack	*target;
+	t_stack	*a_head;
+
 	a_head = a;
 	target = NULL;
 	while (a)
@@ -48,7 +48,7 @@ stack	*find_target_pa(stack *b, stack *a)
 	return (target);
 }
 
-size_t	push_cost(stack *b, stack *target, stack *a, stack *current)
+size_t	push_cost(t_stack *b, t_stack *target, t_stack *a, t_stack *current)
 {
 	size_t	cost;
 
@@ -68,26 +68,26 @@ size_t	push_cost(stack *b, stack *target, stack *a, stack *current)
 			cost = cost + (stack_len(a) - stack_len(current));
 	}
 	return (cost);
-} 
+}
 
-stack	*cheapest_to_pb(stack *a, stack *b)
+t_stack	*cheapest_to_pb(t_stack *a, t_stack *b)
 {
-	stack	*current;
-	stack	*target;
-	stack	*cheap;
+	t_stack	*current;
+	t_stack	*target;
+	t_stack	*cheap;
 	size_t	min;
 	size_t	cost;
 
 	current = a;
 	target = NULL;
 	cheap = NULL;
-	min = 0;	
+	min = 0;
 	cost = 0;
 	while (current)
 	{
 		target = find_target_pb(current, b);
 		cost = push_cost(b, target, a, current);
-		if(!cheap || cost < min)
+		if (!cheap || cost < min)
 		{
 			cheap = current;
 			min = cost;
@@ -96,18 +96,19 @@ stack	*cheapest_to_pb(stack *a, stack *b)
 	}
 	return (cheap);
 }
-stack	*cheapest_to_pa(stack *b, stack *a)
+
+t_stack	*cheapest_to_pa(t_stack *b, t_stack *a)
 {
-	stack	*current;
-	stack	*target;
-	stack	*cheap;
+	t_stack	*current;
+	t_stack	*target;
+	t_stack	*cheap;
 	size_t	min;
 	size_t	cost;
 
 	current = b;
 	target = NULL;
 	cheap = NULL;
-	min = 0;	
+	min = 0;
 	cost = 0;
 	while (current)
 	{
@@ -122,4 +123,3 @@ stack	*cheapest_to_pa(stack *b, stack *a)
 	}
 	return (cheap);
 }
-

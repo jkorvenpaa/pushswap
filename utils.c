@@ -6,26 +6,16 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:30:05 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/10 18:14:46 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/11 15:57:27 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_triple(stack **a)
-{
-	if (((*a)->data > (*a)->next->data))
-		sa(*a);
-	if ((*a)->next->data > (*a)->next->next->data)
-		rra(a);
-	if (((*a)->data > (*a)->next->data))
-		sa(*a);
-}
-
-size_t	stack_len(stack *a)
+size_t	stack_len(t_stack *a)
 {
 	size_t	len;
-	stack	*temp;
+	t_stack	*temp;
 
 	if (!a)
 		return (0);
@@ -39,10 +29,10 @@ size_t	stack_len(stack *a)
 	return (len);
 }
 
-stack	*max_node(stack *a)
+t_stack	*max_node(t_stack *a)
 {
-	stack	*max;
-	stack	*tmp;
+	t_stack	*max;
+	t_stack	*tmp;
 
 	if (!a)
 		return (NULL);
@@ -57,10 +47,10 @@ stack	*max_node(stack *a)
 	return (max);
 }
 
-stack	*min_node(stack *a)
+t_stack	*min_node(t_stack *a)
 {
-	stack	*min;
-	stack	*tmp;
+	t_stack	*min;
+	t_stack	*tmp;
 
 	if (!a)
 		return (NULL);
@@ -75,10 +65,10 @@ stack	*min_node(stack *a)
 	return (min);
 }
 
-bool	past_middle_node(stack *x, stack *target)
+bool	past_middle_node(t_stack *x, t_stack *target)
 {
 	size_t	i;
-	stack	*head;
+	t_stack	*head;
 
 	head = x;
 	i = 0;

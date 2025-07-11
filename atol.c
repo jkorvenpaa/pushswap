@@ -6,11 +6,9 @@
 /*   By: jkorvenp <jkorvenp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:35:42 by jkorvenp          #+#    #+#             */
-/*   Updated: 2025/07/09 12:44:50 by jkorvenp         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:00:25 by jkorvenp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*converts the initial portion of the string pointed to by nptr to int.*/
 
 #include "push_swap.h"
 
