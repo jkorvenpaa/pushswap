@@ -1,50 +1,50 @@
-# Push Swap - 42 school project
-# Algorithm based challenge to sort a stack in ascending order
+# Push Swap – 42 School Project  
+### Algorithmic challenge to sort a stack in ascending order
 
-## Project guidelines
-The goal was to sort a list of integers in stack A in ascending order using only one helper stack, stack B, and a limited set of predefined moves. The purpose of the project was to select and implement an efficient algorithm.
 
-## Behavior
-The program sorts stack A in ascending order. Stack content is provided via command-line arguments.<br>
-It uses my implementation of the Turk algorithm to perform the sorting.
-Program accepts only integer values as input, sorts them, and **outputs moves to achieve the sorted state**.
+---
 
-*Program calculates the cheapest node to move from stack A to stack B, building stack B in descending order.<br>
-It applies the same logic again: finds the cheapest order to move content back to stack A, this time in ascending order.*
+
+## Project Guidelines
+The goal is to sort a list of integers in **stack A** in ascending order using only one other stack (**stack B**) and a set of predefined operations. Purpose of the project was to implement an efficient algorithm that minimizes the number of moves.
+
+
+---
+
+
+## Program Behavior
+The program accepts a list of integers via command-line arguments and outputs the sequence of operations required to sort them.
+It uses a custom implementation of the **Turk algorithm**, which:
+- Calculates the cheapest node to move from stack A to stack B, building stack B in descending order.
+- Then applies the same logic to move elements back to stack A in ascending order.
 
 ### Moves
->sa: Swap the first 2 elements at the top of stack a.<br>
->sb: Swap the first 2 elements at the top of stack b.<br>
->ss: sa and sb at the same time.<br>
->
->pa: Take the first element at the top of b and put it at the top of a.<br>
->pb: Take the first element at the top of a and put it at the top of b.<br>
->
->ra: Shift up all elements of stack a by 1.
-The first element becomes the last one.<br>
->rb: Shift up all elements of stack b by 1.
-The first element becomes the last one.<br>
->rr : ra and rb at the same time.
->
->rra: Shift down all elements of stack a by 1.
-The last element becomes the first one.<br>
->rrb: Shift down all elements of stack b by 1.
-The last element becomes the first one.<br>
->rrr : rra and rrb at the same time.
 
-## Usage
-To compile and run the program, and count the number of moves:
->make<br>
->./push_swap $ARGS | wc -l
->
-*where ARGS=given integer values*
-  
-Already sorted stack displays nothing<br>
-Invalid input results in "Error\n", as specified in the project requirements.<br>
+| Move | Description |
+|------|-------------|
+| `sa` | Swap the first two elements of stack A |
+| `sb` | Swap the first two elements of stack B |
+| `ss` | Perform `sa` and `sb` simultaneously |
+| `pa` | Push the top element of stack B to stack A |
+| `pb` | Push the top element of stack A to stack B |
+| `ra` | Rotate stack A upwards |
+| `rb` | Rotate stack B upwards |
+| `rr` | Perform `ra` and `rb` simultaneously |
+| `rra`| Reverse rotate stack A |
+| `rrb`| Reverse rotate stack B |
+| `rrr`| Perform `rra` and `rrb` simultaneously |
 
-## Results
-The project was tested in peer evaluations based on sorting efficiency, achieving results aligned with the expected performance of the Turk sorting algorithm.
+---
 
- sorts 100 elements on ~650 moves<br> 
- sorts 500 elements on ~6300 moves<br>
-*medians based on peer testing conducted at Hive Helsinki*
+## Build instructions
+
+- Only valid integers are accepted.
+- Already sorted input produces no output.
+- Invalid input results in `"Error\n"` as per project specifications.
+
+To compile and run the program:
+
+```zsh
+make
+./push_swap <ARGS>
+
